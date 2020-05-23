@@ -1,25 +1,30 @@
-const { app, BrowserWindow, globalShortcut } = require('electron')
-const config = require('./config');
+import {app, BrowserWindow, globalShortcut} from 'electron';
+import * as path from 'path';
+import config from './config';
 
-let win;
+let mainWindow: Electron.BrowserWindow;
 
 function createWindow () {
-  win = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     titleBarStyle: 'hidden',
     alwaysOnTop: true,
     webPreferences: {
-      nodeIntegration: true
+      preload: path.join(__dirname, "preload.js")
     }
   })
+  
+  mainWindow.loadURL(config.url);
 
-  win.loadURL(config.url)
-
+  mainWindow.on("closed", ()=>{
+    mainWindow = null;
+  });
 }
 
+
 function toggleDevTools(){
-  win.webContents.toggleDevTools()
+  mainWindow.webContents.toggleDevTools()
 }
 
 function createShortcuts(){
@@ -37,7 +42,7 @@ app.on('window-all-closed', () => {
 })
 
 app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
+  if (mainWindow === null) {
     createWindow()
   }
 })

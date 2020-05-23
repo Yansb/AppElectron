@@ -1,11 +1,17 @@
 {
   "name": "PrimeiroAppElectron",
   "version": "1.0.0",
-  "main": "main.js",
+  "description": "Projeto para fazer um primeiro App com electron",
+
   "scripts": {
-    "start": "electron ."
+    "build": "tsc",
+    "watch": "tsc -w",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "start": "tsc && electron ./dist/main.js"
   },
-  "dependencies": {
-    "electron": "^9.0.0"
+  "devDependencies": {
+    "electron": "^6.0.8",
+    "tslint": "^5.19.0",
+    "typescript": "^3.6.0"
   }
 }
