@@ -14,8 +14,10 @@ function createWindow () {
       preload: path.join(__dirname, "preload.js")
     }
   })
-  
+  //se quiser usar como um navegador que sempre vai ficar no topo da tela
   mainWindow.loadURL(config.url);
+
+  // mainWindow.loadFile(path.join(__dirname, "../FrontEnd/index.html") )
 
   mainWindow.on("closed", ()=>{
     mainWindow = null;

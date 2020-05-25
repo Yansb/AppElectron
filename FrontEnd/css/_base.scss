@@ -1,0 +1,8 @@
+p{
+  color: red;
+  cursor: pointer;
+  
+  &:hover{
+    color: blue;
+  }
+}
