@@ -10,7 +10,7 @@
     "start": "tsc && electron ./dist/main.js"
   },
   "devDependencies": {
-    "electron": "^6.0.8",
+    "electron": "^11.5.0",
     "tslint": "^5.19.0",
     "typescript": "^3.6.0"
   }
